@@ -1,0 +1,69 @@
+.app {
+  background-image: linear-gradient(to right, #6eda78, #ffa200);
+}
+
+.arrow {
+  width: 0;
+  height: 0;
+}
+.arrow-left {
+  border-top: 50px solid transparent;
+  border-right: 100px solid rgb(127, 127, 127);
+  border-bottom: 50px solid transparent;
+}
+.arrow-right {
+  border-top: 50px solid transparent;
+  border-left: 100px solid rgb(127, 127, 127);
+  border-bottom: 50px solid transparent;
+}
+.arrow-up {
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-bottom: 100px solid rgb(127, 127, 127);
+}
+.arrow-down {
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-top: 100px solid rgb(127, 127, 127);
+}
+
+.trapezoid {
+  border-bottom: 100px solid rgb(127, 127, 127);
+  border-left: 25px solid transparent;
+  border-right: 25px solid transparent;
+  height: 0;
+  width: 150px;
+}
+
+.parallelogram {
+  width: 150px;
+  height: 100px;
+  transform: skew(20deg);
+  background: rgb(127, 127, 127);
+}
+
+.rectangle {
+  width: 200px;
+  height: 100px;
+  background: rgb(127, 127, 127);
+}
+
+.circle {
+  width: 100px;
+  height: 100px;
+  background: rgb(127, 127, 127);
+  border-radius: 50%;
+}
+
+.oval {
+  width: 200px;
+  height: 100px;
+  background: rgb(127, 127, 127);
+  border-radius: 100px/50px;
+}
+
+.square {
+  width: 100px;
+  height: 100px;
+  background: rgb(127, 127, 127);
+}

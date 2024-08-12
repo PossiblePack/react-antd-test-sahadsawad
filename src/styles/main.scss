@@ -1,0 +1,78 @@
+// variable
+$gray-shape-color: rgb(127, 127, 127);
+
+.app{
+    background-image: linear-gradient(to right, #6eda78 , #ffa200);
+}
+
+.arrow {
+    width: 0;
+    height: 0;
+    
+    &-left {
+        border-top: 50px solid transparent;
+        border-right: 100px solid $gray-shape-color;
+        border-bottom: 50px solid transparent;
+    }
+
+    &-right {
+        border-top: 50px solid transparent;
+        border-left: 100px solid $gray-shape-color;
+        border-bottom: 50px solid transparent;
+    }
+
+    &-up {
+        border-left: 50px solid transparent;
+        border-right: 50px solid transparent;
+        border-bottom: 100px solid $gray-shape-color;
+    }
+
+    &-down {
+        border-left: 50px solid transparent;
+        border-right: 50px solid transparent;
+        border-top: 100px solid $gray-shape-color;
+    }
+}
+
+.trapezoid {
+    border-bottom: 100px solid $gray-shape-color;
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    height: 0;
+    width: 150px;
+}
+
+.parallelogram {
+    width: 150px;
+    height: 100px;
+    transform: skew(20deg);
+    background: $gray-shape-color;
+}
+
+.rectangle {
+    width: 200px;
+    height: 100px;
+    background: $gray-shape-color;
+}
+
+.circle {
+    width: 100px;
+    height: 100px;
+    background: $gray-shape-color;
+    border-radius: 50%
+}
+
+.oval {
+      width: 200px;
+      height: 100px;
+      background: $gray-shape-color;
+      border-radius: 100px / 50px;
+};
+
+.square {
+    width: 100px;
+    height: 100px;
+    background: $gray-shape-color;
+};
+  
+    

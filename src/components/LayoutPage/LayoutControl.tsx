@@ -1,6 +1,14 @@
 import { Button, Col, Row, Space, Typography } from "antd";
 import React from "react";
+import { useTranslation } from "react-i18next";
+import { rotateShapeLeft, rotateShapeRight } from "../../utils/utillity";
 
+type LayoutControlProps = {
+  shapeOrderList: string[];
+  isSwitched: boolean;
+  setIsSwitched: (data: boolean) => void;
+  setShapeListOrder: (data: string[]) => void;
+};
 const boxStyle: React.CSSProperties = {
   width: "100%",
   height: "fit-content",
@@ -18,7 +26,25 @@ const buttonLabelStyle: React.CSSProperties = {
   color: "white",
 };
 
-const LayoutControl = () => {
+const LayoutControl: React.FC<LayoutControlProps> = ({
+  isSwitched,
+  setIsSwitched,
+  shapeOrderList,
+  setShapeListOrder,
+}) => {
+  const { t } = useTranslation();
+  const onRotateRight = () => {
+    setShapeListOrder(rotateShapeRight([...shapeOrderList]));
+  };
+
+  const onRotateLeft = () => {
+    setShapeListOrder(rotateShapeLeft([...shapeOrderList]));
+  };
+
+  const switchOrder = () => {
+    setIsSwitched(!isSwitched);
+  };
+
   return (
     <Row gutter={16}>
       <Col span={6}>
@@ -26,8 +52,9 @@ const LayoutControl = () => {
           style={boxStyle}
           className='action-button'
           icon={<div className='arrow-left'></div>}
+          onClick={onRotateLeft}
         >
-          <Typography style={buttonLabelStyle}>Move shape</Typography>
+          <Typography style={buttonLabelStyle}>{t("moveShape")}</Typography>
         </Button>
       </Col>
       <Col span={12}>
@@ -40,13 +67,17 @@ const LayoutControl = () => {
               <div className='arrow-down'></div>
             </Space>
           }
+          onClick={switchOrder}
         >
-          <Typography style={buttonLabelStyle}>Move position</Typography>
+          <Typography style={buttonLabelStyle}>{t("movePosition")}</Typography>
         </Button>
       </Col>
       <Col span={6}>
-        <Button style={boxStyle} icon={<div className='arrow-right'></div>}>
-          <Typography style={buttonLabelStyle}>Move shape</Typography>
+        <Button
+          style={boxStyle}
+          icon={<div className='arrow-right' onClick={onRotateRight}></div>}
+        >
+          <Typography style={buttonLabelStyle}>{t("moveShape")}</Typography>
         </Button>
       </Col>
     </Row>

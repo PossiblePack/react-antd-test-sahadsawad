@@ -1,7 +1,8 @@
 import { Layout, Select, Space } from "antd";
 import { Content, Header } from "antd/es/layout/layout";
 import Title from "antd/es/typography/Title";
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
+import { useTranslation } from "react-i18next";
 const { Option } = Select;
 type PageLayoutProps = {
   title?: string;
@@ -9,6 +10,8 @@ type PageLayoutProps = {
 };
 
 function PageLayout({ title, children }: PageLayoutProps) {
+  const { t, i18n } = useTranslation();
+  const [language, setLanguage] = useState("th");
   return (
     <Layout className='app' style={{ minHeight: "100vh", width: "100vw" }}>
       <Header
@@ -23,9 +26,16 @@ function PageLayout({ title, children }: PageLayoutProps) {
           <Title level={2}>{title}</Title>
         </Space>
         <Space>
-          <Select defaultValue='TH' onChange={() => {}}>
-            <Option value='TH'>TH</Option>
-            <Option value='EN'>EN</Option>
+          <Select
+            defaultValue='th'
+            value={language}
+            onChange={(value) => {
+              setLanguage(value);
+              i18n.changeLanguage(value);
+            }}
+          >
+            <Option value='th'>{t("th")}</Option>
+            <Option value='en'>{t("en")}</Option>
           </Select>
         </Space>
       </Header>

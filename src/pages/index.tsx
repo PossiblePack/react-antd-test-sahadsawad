@@ -2,11 +2,13 @@ import React from "react";
 import PageLayout from "../components/UI/PageLayout";
 import { Button, Card, Space } from "antd";
 import Title from "antd/es/typography/Title";
+import { useTranslation } from "react-i18next";
 
 const Homepage = () => {
+  const { t } = useTranslation();
   const testsInfo = [
-    { title: "Layout & Style", link: "layout" },
-    { title: "Form & Table", link: "form" },
+    { title: t("layout"), link: "layout" },
+    { title: t("form"), link: "form" },
   ];
   return (
     <PageLayout>
@@ -18,7 +20,7 @@ const Homepage = () => {
               onClick={() => (window.location.href = `/${test.link}`)}
             >
               <Card
-                title={"Test " + (idx + 1)}
+                title={`${t("test")} ${idx + 1}`}
                 key={test.title}
                 bordered={false}
                 style={{ width: 300 }}

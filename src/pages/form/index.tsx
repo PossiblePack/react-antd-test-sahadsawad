@@ -1,18 +1,21 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import PageLayout from "../../components/UI/PageLayout";
-import { Space } from "antd";
+import { Form, Space } from "antd";
 import FormComponent from "../../components/FormPage/FormComponent";
-import data from "../../api/data.json";
 import TableComponent from "../../components/FormPage/TableComponent";
 
-const FormPage = () => {
+const FormPage: React.FC = () => {
+  const [form] = Form.useForm();
+  const localdata = localStorage.getItem("data");
+  const [data, setData] = useState([]);
+
   useEffect(() => {
-    const localdata = localStorage.getItem("data");
     if (!localdata) {
-      const jsonData = JSON.stringify(data);
-      localStorage.setItem("data", jsonData);
+      setData([]);
+    } else {
+      setData(JSON.parse(localdata!));
     }
-  }, []);
+  }, [localdata]);
 
   return (
     <PageLayout title='Form & Table'>
@@ -25,8 +28,8 @@ const FormPage = () => {
           width: "90%",
         }}
       >
-        <FormComponent />
-        <TableComponent data={data} />
+        <FormComponent form={form} setTableData={setData} />
+        <TableComponent data={data} setTableData={setData} form={form} />
       </Space>
     </PageLayout>
   );

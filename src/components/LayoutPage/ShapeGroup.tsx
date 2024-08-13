@@ -1,4 +1,11 @@
 import { Button, Col, Row, Space } from "antd";
+import { randomShapeOrder } from "../../utils/utillity";
+
+type ShapeGroupProps = {
+  shapeOrderList: string[];
+  isSwitched: boolean;
+  setShapeListOrder: (data: string[]) => void;
+};
 
 const boxStyle: React.CSSProperties = {
   width: "100%",
@@ -7,42 +14,37 @@ const boxStyle: React.CSSProperties = {
   display: "flex",
 };
 
-const ShapeGroup = () => {
+const ShapeGroup: React.FC<ShapeGroupProps> = ({
+  shapeOrderList,
+  isSwitched,
+  setShapeListOrder,
+}) => {
+  const onShuffle = () => {
+    setShapeListOrder(randomShapeOrder(shapeOrderList));
+  };
+
+  const orderedList = isSwitched
+    ? [...shapeOrderList.slice(3, 6), ...shapeOrderList.slice(0, 3)]
+    : shapeOrderList;
   return (
     <Space direction='vertical' size='middle' style={{ display: "flex" }}>
-      <Row gutter={16} justify='end'>
-        <Col span={6}>
-          <Button style={boxStyle}>
-            <div className='trapezoid'></div>
-          </Button>
-        </Col>
-        <Col span={6}>
-          <Button style={boxStyle}>
-            <div className='parallelogram'></div>
-          </Button>
-        </Col>
-        <Col span={6}>
-          <Button style={boxStyle}>
-            <div className='rectangle'></div>
-          </Button>
-        </Col>
+      <Row gutter={16} justify={isSwitched ? "center" : "end"}>
+        {orderedList.slice(0, 3).map((shape, index) => (
+          <Col span={6} key={index}>
+            <Button style={boxStyle} onClick={onShuffle}>
+              <div className={shape}></div>
+            </Button>
+          </Col>
+        ))}
       </Row>
-      <Row gutter={16} justify='center'>
-        <Col span={6}>
-          <Button style={boxStyle}>
-            <div className='circle'></div>
-          </Button>
-        </Col>
-        <Col span={6}>
-          <Button style={boxStyle}>
-            <div className='oval'></div>
-          </Button>
-        </Col>
-        <Col span={6}>
-          <Button style={boxStyle}>
-            <div className='square'></div>
-          </Button>
-        </Col>
+      <Row gutter={16} justify={isSwitched ? "end" : "center"}>
+        {orderedList.slice(3, 6).map((shape, index) => (
+          <Col span={6} key={index}>
+            <Button style={boxStyle} onClick={onShuffle}>
+              <div className={shape}></div>
+            </Button>
+          </Col>
+        ))}
       </Row>
     </Space>
   );

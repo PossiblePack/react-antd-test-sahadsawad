@@ -14,6 +14,9 @@ import Homepage from "./pages";
 import FormPage from "./pages/form";
 import LayoutStylePage from "./pages/layout-style";
 import NotFoundPage from "./components/UI/NotFoundPage";
+import { Provider } from "react-redux";
+import { store } from "./redux/store";
+import "./i18n";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -30,14 +33,10 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <ConfigProvider
-      theme={{
-        token: {
-          colorPrimaryHover: "#ffa200",
-        },
-      }}
-    >
-      <RouterProvider router={router} />
+    <ConfigProvider>
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
     </ConfigProvider>
   </React.StrictMode>
 );
